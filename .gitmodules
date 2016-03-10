@@ -1,3 +1,6 @@
 [submodule "submodules/ecclesandking1969"]
 	path = submodules/ecclesandking1969
 	url = https://github.com/amjjam/ecclesandking1969.git
+[submodule "submodules/rpiozhogin2012"]
+	path = submodules/rpiozhogin2012
+	url = https://github.com/amjjam/rpiozhogin2012.git
