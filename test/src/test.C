@@ -3,13 +3,15 @@
  * steps and writes the results to a file.                                    *
  ******************************************************************************/
 
+#include <stdio.h>
 #include "../../include/xuronglan2015.H"
 
 int main(int argc, char *argv[]){
-  XURONGLAN model;
+  XURONGLAN2015 model;
   
-  int iRho,nRho=151,iZ,nZ=301;
-  double rho,rhoMin=0,dRho=0.1,z,z0=-15,dZ=0.1;
+  int iRho,nRho=1501,iZ,nZ=1501;
+  double rho,rho0=0,dRho=0.01,z,z0=-7.5,dZ=0.01;
+  double density;
   
   FILE *fp=fopen("/tmp/test.dat","w");
   fwrite(&nRho,sizeof(int),1,fp);
@@ -29,8 +31,9 @@ int main(int argc, char *argv[]){
     rho=rho0+dRho*iRho;
     for(iZ=0;iZ<nZ;iZ++){
       z=z0+dZ*iZ;
-      density=model.getDensity(rho,z);
+      density=model.getDensityRhoZ(rho,z);
       fwrite(&density,sizeof(double),1,fp);
+      //      printf("%10.3f %10.3f %10.3f\n",rho,z,density);
     }  
   }
   

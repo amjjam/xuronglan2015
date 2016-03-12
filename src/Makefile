@@ -1,9 +1,12 @@
 libdir=$(prefix)/lib
 
-CPPFLAGS=-Wall -g -fPIC
+CPPFLAGS=-Wall -g -fPIC -I ../submodules/ecclesandking1969/include \
+	-I ../submodules/rpiozhogin2012/include
 CPP=g++
 
-XURONGLAN2015_SRC=xuronglan2015.C
+XURONGLAN2015_SRC=xuronglan2015.C \
+	../submodules/ecclesandking1969/src/ecclesandking1969.C \
+	../submodules/rpiozhogin2012/src/rpiozhogin2012.C
 XURONGLAN2015_OBJ=$(XURONGLAN2015_SRC:.C=.o)
 
 build: libXuronglan2015.a libXuronglan2015.so

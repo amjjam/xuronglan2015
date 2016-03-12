@@ -8,15 +8,15 @@
 
 #include <math.h>
 
-#include <ecclesandking1969.H>
-#include <rpiozhogin2012.H>
+#include "../submodules/ecclesandking1969/include/ecclesandking1969.H"
+#include "../submodules/rpiozhogin2012/include/rpiozhogin2012.H"
 
 class XURONGLAN2015{
 public:
   XURONGLAN2015();
   ~XURONGLAN2015();
-  double getDensity(double L, double mlat);
-  double getDensity(double rho, double z);
+  double getDensityRhoZ(double rho, double z);
+  double getDensityLMlat(double L, double mlat);
 private:
   ECCLESANDKING1969 f2;
   RPIOZHOGIN2012 ozhogin;
@@ -24,6 +24,7 @@ private:
   double rF2Bottom;
   double rF2Top;
   double rOzhoginBottom;
+  double epsilon;
 };
 
 
