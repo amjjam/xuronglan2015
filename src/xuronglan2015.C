@@ -43,7 +43,7 @@ double XURONGLAN2015::getDensityRhoZ(double rho, double z){
   if(rho<epsilon) return 0;
   double r=sqrt(rho*rho+z*z);
   double cosmlat=rho/r;
-  if(cosmlat<epsilon) cosmlat=eposilon;
+  if(cosmlat<epsilon) cosmlat=epsilon;
   double mlat=acos(cosmlat)/M_PI*180;
   double L=r/cosmlat/cosmlat;
   
@@ -85,7 +85,7 @@ double XURONGLAN2015::getDensityLMlat(double L, double mlat){
     // region to bottom of Ozhogin model
     // First find the parameter A and h of a model Ae^{-r/h} which
     // goes from F2 peak to bottom side of the Ozhogin model
-    if(onosphere){
+    if(ionosphere){
       double rhoF2=f2.getDensity(mlat);
       double LOzhoginBottom=rOzhoginBottom/cosmlat/cosmlat;
       double rhoOB=ozhogin.getDensity(LOzhoginBottom,mlat);
