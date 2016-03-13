@@ -42,7 +42,7 @@ double XURONGLAN2015::getDensityRhoZ(double rho, double z){
   if(rho<epsilon) return 0;
   double r=sqrt(rho*rho+z*z);
   double cosmlat=rho/r;
-  if(cosmlat<epsilon) return 0;
+  if(cosmlat<epsilon) cosmlat=eposilon;
   double mlat=acos(cosmlat)/M_PI*180;
   double L=r/cosmlat/cosmlat;
   
