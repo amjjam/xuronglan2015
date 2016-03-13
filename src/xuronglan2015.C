@@ -8,14 +8,15 @@
 /*=============================================================================
   XURONGLAN2015() - constructor
   ============================================================================*/
-XURONGLAN2015::XURONGLAN2015(){
+XURONGLAN2015::XURONGLAN2015(bool ionosphere){
   double EarthRadius=6371.0;
   double hIBottom=0;
   double hF2=390;
   double tF2=160;
   double hF2Bottom=hF2-tF2/2;
   double hF2Top=hF2+tF2/2;
-  
+
+  XURONGLAN2015::ionosphere=ionosphere;
   rIBottom=(EarthRadius+hIBottom)/EarthRadius;
   rF2Bottom=(EarthRadius+hF2Bottom)/EarthRadius;
   rF2Top=(EarthRadius+hF2Top)/EarthRadius;
@@ -67,23 +68,33 @@ double XURONGLAN2015::getDensityLMlat(double L, double mlat){
     rho=0;
   }
   else if(r<rF2Bottom){ // Linear increase from bottom of ionosphere
-			// to bottom of F2 peak region
-    double rhoF2=f2.getDensity(mlat);
-    rho=rhoF2/(rF2Bottom-rIBottom)*(r-rIBottom);
+    // to bottom of F2 peak region
+    if(ionosphere){
+      double rhoF2=f2.getDensity(mlat);
+      rho=rhoF2/(rF2Bottom-rIBottom)*(r-rIBottom);
+    }
+    else rho=0;
   }
   else if(r<rF2Top){ // Constant in F2 peak region
-    rho=f2.getDensity(mlat);
+    if(ionosphere)
+      rho=f2.getDensity(mlat);
+    else
+      rho=0;
   }
   else if(r<rOzhoginBottom){ // Exponential drop from top of F2 peak
-			     // region to bottom of Ozhogin model
+    // region to bottom of Ozhogin model
     // First find the parameter A and h of a model Ae^{-r/h} which
     // goes from F2 peak to bottom side of the Ozhogin model
-    double rhoF2=f2.getDensity(mlat);
-    double LOzhoginBottom=rOzhoginBottom/cosmlat/cosmlat;
-    double rhoOB=ozhogin.getDensity(LOzhoginBottom,mlat);
-    double h=(rOzhoginBottom-rF2Top)/log(rhoF2/rhoOB);
-    double A=exp(log(rhoF2)+rF2Top/h);
-    rho=A*exp(-r/h);
+    if(onosphere){
+      double rhoF2=f2.getDensity(mlat);
+      double LOzhoginBottom=rOzhoginBottom/cosmlat/cosmlat;
+      double rhoOB=ozhogin.getDensity(LOzhoginBottom,mlat);
+      double h=(rOzhoginBottom-rF2Top)/log(rhoF2/rhoOB);
+      double A=exp(log(rhoF2)+rF2Top/h);
+      rho=A*exp(-r/h);
+    }
+    else
+      rho=0;
   }
   else{ // Ozhogin model
     rho=ozhogin.getDensity(L,mlat);
