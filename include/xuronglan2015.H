@@ -13,13 +13,14 @@
 
 class XURONGLAN2015{
 public:
-  XURONGLAN2015();
+  XURONGLAN2015(bool ionosphere=true);
   ~XURONGLAN2015();
   double getDensityRhoZ(double rho, double z);
   double getDensityLMlat(double L, double mlat);
 private:
   ECCLESANDKING1969 f2;
   RPIOZHOGIN2012 ozhogin;
+  bool ionosphere;
   double rIBottom;
   double rF2Bottom;
   double rF2Top;
