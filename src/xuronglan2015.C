@@ -38,7 +38,7 @@ XURONGLAN2015::~XURONGLAN2015(){
   double setEandK1969Params(double A, double B) - 
   ============================================================================*/
 void XURONGLAN2015::setEandK1969Params(double A, double B){
-  fs.setParams(A,B);
+  f2.setParams(A,B);
 }
 
 
