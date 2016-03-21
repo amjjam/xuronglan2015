@@ -15,6 +15,7 @@ class XURONGLAN2015{
 public:
   XURONGLAN2015(bool ionosphere=true);
   ~XURONGLAN2015();
+  void setEandK1969Params(double A, double B);
   double getDensityRhoZ(double rho, double z);
   double getDensityLMlat(double L, double mlat);
 private:

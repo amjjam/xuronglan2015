@@ -35,6 +35,14 @@ XURONGLAN2015::~XURONGLAN2015(){
 
 
 /*=============================================================================
+  double setEandK1969Params(double A, double B) - 
+  ============================================================================*/
+void XURONGLAN2015::setEandK1969Params(double A, double B){
+  fs.setParams(A,B);
+}
+
+
+/*=============================================================================
   double getDensityRhoZ(double rho, double z) - return density in cm^{-3}
   for the position (rho,z) in Re in the cylindrical SM coordinate
   system.
